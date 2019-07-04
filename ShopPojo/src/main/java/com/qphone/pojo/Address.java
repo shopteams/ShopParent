@@ -1,6 +1,8 @@
 package com.qphone.pojo;
 
-public class Address {
+import java.io.Serializable;
+
+public class Address implements Serializable{
     private String addressAreaid;
 
     private String addressName;
@@ -29,5 +31,14 @@ public class Address {
 
     public void setAddressRegionid(String addressRegionid) {
         this.addressRegionid = addressRegionid == null ? null : addressRegionid.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "addressAreaid='" + addressAreaid + '\'' +
+                ", addressName='" + addressName + '\'' +
+                ", addressRegionid='" + addressRegionid + '\'' +
+                '}';
     }
 }

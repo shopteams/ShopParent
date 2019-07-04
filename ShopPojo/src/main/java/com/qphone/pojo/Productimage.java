@@ -1,6 +1,8 @@
 package com.qphone.pojo;
 
-public class Productimage {
+import java.io.Serializable;
+
+public class Productimage implements Serializable{
     private Integer productimageId;
 
     private Boolean productimageType;
@@ -39,5 +41,15 @@ public class Productimage {
 
     public void setProductimageProductId(Integer productimageProductId) {
         this.productimageProductId = productimageProductId;
+    }
+
+    @Override
+    public String toString() {
+        return "Productimage{" +
+                "productimageId=" + productimageId +
+                ", productimageType=" + productimageType +
+                ", productimageSrc='" + productimageSrc + '\'' +
+                ", productimageProductId=" + productimageProductId +
+                '}';
     }
 }

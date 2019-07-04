@@ -1,6 +1,8 @@
 package com.qphone.pojo;
 
-public class Property {
+import java.io.Serializable;
+
+public class Property implements Serializable{
     private Integer propertyId;
 
     private String propertyName;
@@ -29,5 +31,14 @@ public class Property {
 
     public void setPropertyCategoryId(Integer propertyCategoryId) {
         this.propertyCategoryId = propertyCategoryId;
+    }
+
+    @Override
+    public String toString() {
+        return "Property{" +
+                "propertyId=" + propertyId +
+                ", propertyName='" + propertyName + '\'' +
+                ", propertyCategoryId=" + propertyCategoryId +
+                '}';
     }
 }

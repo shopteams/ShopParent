@@ -1,8 +1,9 @@
 package com.qphone.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Review {
+public class Review implements Serializable{
     private Integer reviewId;
 
     private Date reviewCreatedate;
@@ -61,5 +62,17 @@ public class Review {
 
     public void setReviewContent(String reviewContent) {
         this.reviewContent = reviewContent == null ? null : reviewContent.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Review{" +
+                "reviewId=" + reviewId +
+                ", reviewCreatedate=" + reviewCreatedate +
+                ", reviewUserId=" + reviewUserId +
+                ", reviewProductId=" + reviewProductId +
+                ", reviewOrderitemId=" + reviewOrderitemId +
+                ", reviewContent='" + reviewContent + '\'' +
+                '}';
     }
 }

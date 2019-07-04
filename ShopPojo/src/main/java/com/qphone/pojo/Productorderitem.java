@@ -1,8 +1,9 @@
 package com.qphone.pojo;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class Productorderitem {
+public class Productorderitem implements Serializable{
     private Integer productorderitemId;
 
     private Short productorderitemNumber;
@@ -71,5 +72,18 @@ public class Productorderitem {
 
     public void setProductorderitemUsermessage(String productorderitemUsermessage) {
         this.productorderitemUsermessage = productorderitemUsermessage == null ? null : productorderitemUsermessage.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Productorderitem{" +
+                "productorderitemId=" + productorderitemId +
+                ", productorderitemNumber=" + productorderitemNumber +
+                ", productorderitemPrice=" + productorderitemPrice +
+                ", productorderitemProductId=" + productorderitemProductId +
+                ", productorderitemOrderId=" + productorderitemOrderId +
+                ", productorderitemUserId=" + productorderitemUserId +
+                ", productorderitemUsermessage='" + productorderitemUsermessage + '\'' +
+                '}';
     }
 }

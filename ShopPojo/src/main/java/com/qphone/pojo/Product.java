@@ -1,9 +1,10 @@
 package com.qphone.pojo;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class Product {
+public class Product implements Serializable{
     private Integer productId;
 
     private String productName;
@@ -82,5 +83,19 @@ public class Product {
 
     public void setProductIsenabled(Boolean productIsenabled) {
         this.productIsenabled = productIsenabled;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId=" + productId +
+                ", productName='" + productName + '\'' +
+                ", productTitle='" + productTitle + '\'' +
+                ", productPrice=" + productPrice +
+                ", productSalePrice=" + productSalePrice +
+                ", productCreateDate=" + productCreateDate +
+                ", productCategoryId=" + productCategoryId +
+                ", productIsenabled=" + productIsenabled +
+                '}';
     }
 }

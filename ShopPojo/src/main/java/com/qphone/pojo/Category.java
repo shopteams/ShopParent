@@ -1,6 +1,8 @@
 package com.qphone.pojo;
 
-public class Category {
+import java.io.Serializable;
+
+public class Category implements Serializable{
     private Integer categoryId;
 
     private String categoryName;
@@ -29,5 +31,14 @@ public class Category {
 
     public void setCategoryImageSrc(String categoryImageSrc) {
         this.categoryImageSrc = categoryImageSrc == null ? null : categoryImageSrc.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "categoryId=" + categoryId +
+                ", categoryName='" + categoryName + '\'' +
+                ", categoryImageSrc='" + categoryImageSrc + '\'' +
+                '}';
     }
 }

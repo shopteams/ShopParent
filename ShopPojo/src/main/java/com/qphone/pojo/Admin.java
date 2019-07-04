@@ -1,6 +1,8 @@
 package com.qphone.pojo;
 
-public class Admin {
+import java.io.Serializable;
+
+public class Admin implements Serializable {
     private Integer adminId;
 
     private String adminName;
@@ -49,5 +51,16 @@ public class Admin {
 
     public void setAdminProfilePictureSrc(String adminProfilePictureSrc) {
         this.adminProfilePictureSrc = adminProfilePictureSrc == null ? null : adminProfilePictureSrc.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Admin{" +
+                "adminId=" + adminId +
+                ", adminName='" + adminName + '\'' +
+                ", adminNickname='" + adminNickname + '\'' +
+                ", adminPassword='" + adminPassword + '\'' +
+                ", adminProfilePictureSrc='" + adminProfilePictureSrc + '\'' +
+                '}';
     }
 }

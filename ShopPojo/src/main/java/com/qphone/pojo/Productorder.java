@@ -1,8 +1,9 @@
 package com.qphone.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Productorder {
+public class Productorder implements Serializable{
     private Integer productorderId;
 
     private String productorderCode;
@@ -121,5 +122,23 @@ public class Productorder {
 
     public void setProductorderUserId(Integer productorderUserId) {
         this.productorderUserId = productorderUserId;
+    }
+
+    @Override
+    public String toString() {
+        return "Productorder{" +
+                "productorderId=" + productorderId +
+                ", productorderCode='" + productorderCode + '\'' +
+                ", productorderAddress='" + productorderAddress + '\'' +
+                ", productorderDetailAddress='" + productorderDetailAddress + '\'' +
+                ", productorderPost='" + productorderPost + '\'' +
+                ", productorderReceiver='" + productorderReceiver + '\'' +
+                ", productorderMobile='" + productorderMobile + '\'' +
+                ", productorderPayDate=" + productorderPayDate +
+                ", productorderDeliveryDate=" + productorderDeliveryDate +
+                ", productorderConfirmDate=" + productorderConfirmDate +
+                ", productorderStatus=" + productorderStatus +
+                ", productorderUserId=" + productorderUserId +
+                '}';
     }
 }
