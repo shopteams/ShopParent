@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qphone.dao.ProductimageMapper">
+  <resultMap id="BaseResultMap" type="com.qphone.pojo.Productimage">
+    <id column="productimage_id" jdbcType="INTEGER" property="productimageId" />
+    <result column="productimage_type" jdbcType="BIT" property="productimageType" />
+    <result column="productimage_src" jdbcType="VARCHAR" property="productimageSrc" />
+    <result column="productimage_product_id" jdbcType="INTEGER" property="productimageProductId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    productimage_id, productimage_type, productimage_src, productimage_product_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from productimage
+    where productimage_id = #{productimageId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from productimage
+    where productimage_id = #{productimageId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qphone.pojo.Productimage">
+    insert into productimage (productimage_id, productimage_type, productimage_src, 
+      productimage_product_id)
+    values (#{productimageId,jdbcType=INTEGER}, #{productimageType,jdbcType=BIT}, #{productimageSrc,jdbcType=VARCHAR}, 
+      #{productimageProductId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qphone.pojo.Productimage">
+    insert into productimage
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="productimageId != null">
+        productimage_id,
+      </if>
+      <if test="productimageType != null">
+        productimage_type,
+      </if>
+      <if test="productimageSrc != null">
+        productimage_src,
+      </if>
+      <if test="productimageProductId != null">
+        productimage_product_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="productimageId != null">
+        #{productimageId,jdbcType=INTEGER},
+      </if>
+      <if test="productimageType != null">
+        #{productimageType,jdbcType=BIT},
+      </if>
+      <if test="productimageSrc != null">
+        #{productimageSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="productimageProductId != null">
+        #{productimageProductId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qphone.pojo.Productimage">
+    update productimage
+    <set>
+      <if test="productimageType != null">
+        productimage_type = #{productimageType,jdbcType=BIT},
+      </if>
+      <if test="productimageSrc != null">
+        productimage_src = #{productimageSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="productimageProductId != null">
+        productimage_product_id = #{productimageProductId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where productimage_id = #{productimageId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qphone.pojo.Productimage">
+    update productimage
+    set productimage_type = #{productimageType,jdbcType=BIT},
+      productimage_src = #{productimageSrc,jdbcType=VARCHAR},
+      productimage_product_id = #{productimageProductId,jdbcType=INTEGER}
+    where productimage_id = #{productimageId,jdbcType=INTEGER}
+  </update>
+</mapper>

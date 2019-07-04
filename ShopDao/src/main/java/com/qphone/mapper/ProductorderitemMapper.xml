@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qphone.dao.ProductorderitemMapper">
+  <resultMap id="BaseResultMap" type="com.qphone.pojo.Productorderitem">
+    <id column="productorderitem_id" jdbcType="INTEGER" property="productorderitemId" />
+    <result column="productorderitem_number" jdbcType="SMALLINT" property="productorderitemNumber" />
+    <result column="productorderitem_price" jdbcType="DECIMAL" property="productorderitemPrice" />
+    <result column="productorderitem_product_id" jdbcType="INTEGER" property="productorderitemProductId" />
+    <result column="productorderitem_order_id" jdbcType="INTEGER" property="productorderitemOrderId" />
+    <result column="productorderitem_user_id" jdbcType="INTEGER" property="productorderitemUserId" />
+    <result column="productorderitem_userMessage" jdbcType="VARCHAR" property="productorderitemUsermessage" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    productorderitem_id, productorderitem_number, productorderitem_price, productorderitem_product_id, 
+    productorderitem_order_id, productorderitem_user_id, productorderitem_userMessage
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from productorderitem
+    where productorderitem_id = #{productorderitemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from productorderitem
+    where productorderitem_id = #{productorderitemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qphone.pojo.Productorderitem">
+    insert into productorderitem (productorderitem_id, productorderitem_number, 
+      productorderitem_price, productorderitem_product_id, 
+      productorderitem_order_id, productorderitem_user_id, 
+      productorderitem_userMessage)
+    values (#{productorderitemId,jdbcType=INTEGER}, #{productorderitemNumber,jdbcType=SMALLINT}, 
+      #{productorderitemPrice,jdbcType=DECIMAL}, #{productorderitemProductId,jdbcType=INTEGER}, 
+      #{productorderitemOrderId,jdbcType=INTEGER}, #{productorderitemUserId,jdbcType=INTEGER}, 
+      #{productorderitemUsermessage,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qphone.pojo.Productorderitem">
+    insert into productorderitem
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="productorderitemId != null">
+        productorderitem_id,
+      </if>
+      <if test="productorderitemNumber != null">
+        productorderitem_number,
+      </if>
+      <if test="productorderitemPrice != null">
+        productorderitem_price,
+      </if>
+      <if test="productorderitemProductId != null">
+        productorderitem_product_id,
+      </if>
+      <if test="productorderitemOrderId != null">
+        productorderitem_order_id,
+      </if>
+      <if test="productorderitemUserId != null">
+        productorderitem_user_id,
+      </if>
+      <if test="productorderitemUsermessage != null">
+        productorderitem_userMessage,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="productorderitemId != null">
+        #{productorderitemId,jdbcType=INTEGER},
+      </if>
+      <if test="productorderitemNumber != null">
+        #{productorderitemNumber,jdbcType=SMALLINT},
+      </if>
+      <if test="productorderitemPrice != null">
+        #{productorderitemPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="productorderitemProductId != null">
+        #{productorderitemProductId,jdbcType=INTEGER},
+      </if>
+      <if test="productorderitemOrderId != null">
+        #{productorderitemOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="productorderitemUserId != null">
+        #{productorderitemUserId,jdbcType=INTEGER},
+      </if>
+      <if test="productorderitemUsermessage != null">
+        #{productorderitemUsermessage,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qphone.pojo.Productorderitem">
+    update productorderitem
+    <set>
+      <if test="productorderitemNumber != null">
+        productorderitem_number = #{productorderitemNumber,jdbcType=SMALLINT},
+      </if>
+      <if test="productorderitemPrice != null">
+        productorderitem_price = #{productorderitemPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="productorderitemProductId != null">
+        productorderitem_product_id = #{productorderitemProductId,jdbcType=INTEGER},
+      </if>
+      <if test="productorderitemOrderId != null">
+        productorderitem_order_id = #{productorderitemOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="productorderitemUserId != null">
+        productorderitem_user_id = #{productorderitemUserId,jdbcType=INTEGER},
+      </if>
+      <if test="productorderitemUsermessage != null">
+        productorderitem_userMessage = #{productorderitemUsermessage,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where productorderitem_id = #{productorderitemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qphone.pojo.Productorderitem">
+    update productorderitem
+    set productorderitem_number = #{productorderitemNumber,jdbcType=SMALLINT},
+      productorderitem_price = #{productorderitemPrice,jdbcType=DECIMAL},
+      productorderitem_product_id = #{productorderitemProductId,jdbcType=INTEGER},
+      productorderitem_order_id = #{productorderitemOrderId,jdbcType=INTEGER},
+      productorderitem_user_id = #{productorderitemUserId,jdbcType=INTEGER},
+      productorderitem_userMessage = #{productorderitemUsermessage,jdbcType=VARCHAR}
+    where productorderitem_id = #{productorderitemId,jdbcType=INTEGER}
+  </update>
+</mapper>

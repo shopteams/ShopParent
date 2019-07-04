@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qphone.dao.ProductorderMapper">
+  <resultMap id="BaseResultMap" type="com.qphone.pojo.Productorder">
+    <id column="productorder_id" jdbcType="INTEGER" property="productorderId" />
+    <result column="productorder_code" jdbcType="VARCHAR" property="productorderCode" />
+    <result column="productorder_address" jdbcType="CHAR" property="productorderAddress" />
+    <result column="productorder_detail_address" jdbcType="VARCHAR" property="productorderDetailAddress" />
+    <result column="productorder_post" jdbcType="CHAR" property="productorderPost" />
+    <result column="productorder_receiver" jdbcType="VARCHAR" property="productorderReceiver" />
+    <result column="productorder_mobile" jdbcType="CHAR" property="productorderMobile" />
+    <result column="productorder_pay_date" jdbcType="TIMESTAMP" property="productorderPayDate" />
+    <result column="productorder_delivery_date" jdbcType="TIMESTAMP" property="productorderDeliveryDate" />
+    <result column="productorder_confirm_date" jdbcType="TIMESTAMP" property="productorderConfirmDate" />
+    <result column="productorder_status" jdbcType="BIT" property="productorderStatus" />
+    <result column="productorder_user_id" jdbcType="INTEGER" property="productorderUserId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    productorder_id, productorder_code, productorder_address, productorder_detail_address, 
+    productorder_post, productorder_receiver, productorder_mobile, productorder_pay_date, 
+    productorder_delivery_date, productorder_confirm_date, productorder_status, productorder_user_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from productorder
+    where productorder_id = #{productorderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from productorder
+    where productorder_id = #{productorderId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qphone.pojo.Productorder">
+    insert into productorder (productorder_id, productorder_code, 
+      productorder_address, productorder_detail_address, 
+      productorder_post, productorder_receiver, productorder_mobile, 
+      productorder_pay_date, productorder_delivery_date, 
+      productorder_confirm_date, productorder_status, 
+      productorder_user_id)
+    values (#{productorderId,jdbcType=INTEGER}, #{productorderCode,jdbcType=VARCHAR}, 
+      #{productorderAddress,jdbcType=CHAR}, #{productorderDetailAddress,jdbcType=VARCHAR}, 
+      #{productorderPost,jdbcType=CHAR}, #{productorderReceiver,jdbcType=VARCHAR}, #{productorderMobile,jdbcType=CHAR}, 
+      #{productorderPayDate,jdbcType=TIMESTAMP}, #{productorderDeliveryDate,jdbcType=TIMESTAMP}, 
+      #{productorderConfirmDate,jdbcType=TIMESTAMP}, #{productorderStatus,jdbcType=BIT}, 
+      #{productorderUserId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qphone.pojo.Productorder">
+    insert into productorder
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="productorderId != null">
+        productorder_id,
+      </if>
+      <if test="productorderCode != null">
+        productorder_code,
+      </if>
+      <if test="productorderAddress != null">
+        productorder_address,
+      </if>
+      <if test="productorderDetailAddress != null">
+        productorder_detail_address,
+      </if>
+      <if test="productorderPost != null">
+        productorder_post,
+      </if>
+      <if test="productorderReceiver != null">
+        productorder_receiver,
+      </if>
+      <if test="productorderMobile != null">
+        productorder_mobile,
+      </if>
+      <if test="productorderPayDate != null">
+        productorder_pay_date,
+      </if>
+      <if test="productorderDeliveryDate != null">
+        productorder_delivery_date,
+      </if>
+      <if test="productorderConfirmDate != null">
+        productorder_confirm_date,
+      </if>
+      <if test="productorderStatus != null">
+        productorder_status,
+      </if>
+      <if test="productorderUserId != null">
+        productorder_user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="productorderId != null">
+        #{productorderId,jdbcType=INTEGER},
+      </if>
+      <if test="productorderCode != null">
+        #{productorderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productorderAddress != null">
+        #{productorderAddress,jdbcType=CHAR},
+      </if>
+      <if test="productorderDetailAddress != null">
+        #{productorderDetailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="productorderPost != null">
+        #{productorderPost,jdbcType=CHAR},
+      </if>
+      <if test="productorderReceiver != null">
+        #{productorderReceiver,jdbcType=VARCHAR},
+      </if>
+      <if test="productorderMobile != null">
+        #{productorderMobile,jdbcType=CHAR},
+      </if>
+      <if test="productorderPayDate != null">
+        #{productorderPayDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productorderDeliveryDate != null">
+        #{productorderDeliveryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productorderConfirmDate != null">
+        #{productorderConfirmDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productorderStatus != null">
+        #{productorderStatus,jdbcType=BIT},
+      </if>
+      <if test="productorderUserId != null">
+        #{productorderUserId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qphone.pojo.Productorder">
+    update productorder
+    <set>
+      <if test="productorderCode != null">
+        productorder_code = #{productorderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productorderAddress != null">
+        productorder_address = #{productorderAddress,jdbcType=CHAR},
+      </if>
+      <if test="productorderDetailAddress != null">
+        productorder_detail_address = #{productorderDetailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="productorderPost != null">
+        productorder_post = #{productorderPost,jdbcType=CHAR},
+      </if>
+      <if test="productorderReceiver != null">
+        productorder_receiver = #{productorderReceiver,jdbcType=VARCHAR},
+      </if>
+      <if test="productorderMobile != null">
+        productorder_mobile = #{productorderMobile,jdbcType=CHAR},
+      </if>
+      <if test="productorderPayDate != null">
+        productorder_pay_date = #{productorderPayDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productorderDeliveryDate != null">
+        productorder_delivery_date = #{productorderDeliveryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productorderConfirmDate != null">
+        productorder_confirm_date = #{productorderConfirmDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productorderStatus != null">
+        productorder_status = #{productorderStatus,jdbcType=BIT},
+      </if>
+      <if test="productorderUserId != null">
+        productorder_user_id = #{productorderUserId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where productorder_id = #{productorderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qphone.pojo.Productorder">
+    update productorder
+    set productorder_code = #{productorderCode,jdbcType=VARCHAR},
+      productorder_address = #{productorderAddress,jdbcType=CHAR},
+      productorder_detail_address = #{productorderDetailAddress,jdbcType=VARCHAR},
+      productorder_post = #{productorderPost,jdbcType=CHAR},
+      productorder_receiver = #{productorderReceiver,jdbcType=VARCHAR},
+      productorder_mobile = #{productorderMobile,jdbcType=CHAR},
+      productorder_pay_date = #{productorderPayDate,jdbcType=TIMESTAMP},
+      productorder_delivery_date = #{productorderDeliveryDate,jdbcType=TIMESTAMP},
+      productorder_confirm_date = #{productorderConfirmDate,jdbcType=TIMESTAMP},
+      productorder_status = #{productorderStatus,jdbcType=BIT},
+      productorder_user_id = #{productorderUserId,jdbcType=INTEGER}
+    where productorder_id = #{productorderId,jdbcType=INTEGER}
+  </update>
+</mapper>

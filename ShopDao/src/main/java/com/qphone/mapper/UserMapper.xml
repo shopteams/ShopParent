@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qphone.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.qphone.pojo.User">
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_nickname" jdbcType="VARCHAR" property="userNickname" />
+    <result column="user_password" jdbcType="VARCHAR" property="userPassword" />
+    <result column="user_realname" jdbcType="VARCHAR" property="userRealname" />
+    <result column="user_gender" jdbcType="BIT" property="userGender" />
+    <result column="user_birthday" jdbcType="DATE" property="userBirthday" />
+    <result column="user_address" jdbcType="CHAR" property="userAddress" />
+    <result column="user_homeplace" jdbcType="CHAR" property="userHomeplace" />
+    <result column="user_profile_picture_src" jdbcType="VARCHAR" property="userProfilePictureSrc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, user_name, user_nickname, user_password, user_realname, user_gender, user_birthday, 
+    user_address, user_homeplace, user_profile_picture_src
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qphone.pojo.User">
+    insert into user (user_id, user_name, user_nickname, 
+      user_password, user_realname, user_gender, 
+      user_birthday, user_address, user_homeplace, 
+      user_profile_picture_src)
+    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userNickname,jdbcType=VARCHAR}, 
+      #{userPassword,jdbcType=VARCHAR}, #{userRealname,jdbcType=VARCHAR}, #{userGender,jdbcType=BIT}, 
+      #{userBirthday,jdbcType=DATE}, #{userAddress,jdbcType=CHAR}, #{userHomeplace,jdbcType=CHAR}, 
+      #{userProfilePictureSrc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qphone.pojo.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="userNickname != null">
+        user_nickname,
+      </if>
+      <if test="userPassword != null">
+        user_password,
+      </if>
+      <if test="userRealname != null">
+        user_realname,
+      </if>
+      <if test="userGender != null">
+        user_gender,
+      </if>
+      <if test="userBirthday != null">
+        user_birthday,
+      </if>
+      <if test="userAddress != null">
+        user_address,
+      </if>
+      <if test="userHomeplace != null">
+        user_homeplace,
+      </if>
+      <if test="userProfilePictureSrc != null">
+        user_profile_picture_src,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userNickname != null">
+        #{userNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null">
+        #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userRealname != null">
+        #{userRealname,jdbcType=VARCHAR},
+      </if>
+      <if test="userGender != null">
+        #{userGender,jdbcType=BIT},
+      </if>
+      <if test="userBirthday != null">
+        #{userBirthday,jdbcType=DATE},
+      </if>
+      <if test="userAddress != null">
+        #{userAddress,jdbcType=CHAR},
+      </if>
+      <if test="userHomeplace != null">
+        #{userHomeplace,jdbcType=CHAR},
+      </if>
+      <if test="userProfilePictureSrc != null">
+        #{userProfilePictureSrc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qphone.pojo.User">
+    update user
+    <set>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userNickname != null">
+        user_nickname = #{userNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null">
+        user_password = #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userRealname != null">
+        user_realname = #{userRealname,jdbcType=VARCHAR},
+      </if>
+      <if test="userGender != null">
+        user_gender = #{userGender,jdbcType=BIT},
+      </if>
+      <if test="userBirthday != null">
+        user_birthday = #{userBirthday,jdbcType=DATE},
+      </if>
+      <if test="userAddress != null">
+        user_address = #{userAddress,jdbcType=CHAR},
+      </if>
+      <if test="userHomeplace != null">
+        user_homeplace = #{userHomeplace,jdbcType=CHAR},
+      </if>
+      <if test="userProfilePictureSrc != null">
+        user_profile_picture_src = #{userProfilePictureSrc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qphone.pojo.User">
+    update user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      user_nickname = #{userNickname,jdbcType=VARCHAR},
+      user_password = #{userPassword,jdbcType=VARCHAR},
+      user_realname = #{userRealname,jdbcType=VARCHAR},
+      user_gender = #{userGender,jdbcType=BIT},
+      user_birthday = #{userBirthday,jdbcType=DATE},
+      user_address = #{userAddress,jdbcType=CHAR},
+      user_homeplace = #{userHomeplace,jdbcType=CHAR},
+      user_profile_picture_src = #{userProfilePictureSrc,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+</mapper>
