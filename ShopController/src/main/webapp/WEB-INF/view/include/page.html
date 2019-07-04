@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<script>
+    $(function () {
+        $(".disabled>a,.pageThis>a").attr("onclick", null);
+    })
+</script>
+<div id="pageDiv">
+    <ul>
+        <li data-name="firstPage" >
+            <a href="javascript:void(0)" onclick="getPage(0)" aria-label="棣栭〉"><span
+                    aria-hidden="true">&laquo;</span></a>
+        </li>
+        <li data-name="prevPage" >
+            <a href="javascript:void(0)" onclick="getPage(${requestScope.pageUtil.index-1})" aria-label="涓婁竴椤�"><span
+                    aria-hidden="true">&lsaquo;</span></a>
+        </li>
+
+        <c:forEach begin="1" end="${requestScope.pageUtil.getTotalPage()}" varStatus="status">
+            <c:if test="${status.count-requestScope.pageUtil.index>=-5 && status.count-requestScope.pageUtil.index<=5}">
+                <li >
+                    <a href="javascript:void(0)" onclick="getPage(${status.count-1})">${status.count}</a>
+                </li>
+            </c:if>
+        </c:forEach>
+
+        <li data-name="nextPage" >
+            <a href="javascript:void(0)" onclick="getPage(${requestScope.pageUtil.index+1})" aria-label="涓嬩竴椤�"><span
+                    aria-hidden="true">&rsaquo;</span></a>
+        </li>
+        <li data-name="lastPage" >
+            <a href="javascript:void(0)" onclick="getPage(${requestScope.pageUtil.getTotalPage()-1})" aria-label="灏鹃〉">&raquo;</a>
+        </li>
+    </ul>
+</div>
+
