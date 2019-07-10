@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Productimage implements Serializable{
     private Integer productimageId;
 
-    private Boolean productimageType;
+    private Integer productimageType;
 
     private String productimageSrc;
 
@@ -19,11 +19,11 @@ public class Productimage implements Serializable{
         this.productimageId = productimageId;
     }
 
-    public Boolean getProductimageType() {
+    public Integer getProductimageType() {
         return productimageType;
     }
 
-    public void setProductimageType(Boolean productimageType) {
+    public void setProductimageType(Integer productimageType) {
         this.productimageType = productimageType;
     }
 

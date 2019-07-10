@@ -150,4 +150,8 @@
       user_profile_picture_src = #{userProfilePictureSrc,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
+
+  <select id="showHomepageUser" resultType="int">
+    select count(0) from user
+  </select>
 </mapper>

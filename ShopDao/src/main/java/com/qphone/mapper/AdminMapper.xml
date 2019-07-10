@@ -8,6 +8,7 @@
     <result column="admin_password" jdbcType="VARCHAR" property="adminPassword" />
     <result column="admin_profile_picture_src" jdbcType="VARCHAR" property="adminProfilePictureSrc" />
   </resultMap>
+
   <sql id="Base_Column_List">
     admin_id, admin_name, admin_nickname, admin_password, admin_profile_picture_src
   </sql>

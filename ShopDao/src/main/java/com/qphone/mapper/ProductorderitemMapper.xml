@@ -117,4 +117,10 @@
       productorderitem_userMessage = #{productorderitemUsermessage,jdbcType=VARCHAR}
     where productorderitem_id = #{productorderitemId,jdbcType=INTEGER}
   </update>
+
+
+  <delete id="deleteByProductId" parameterType="java.lang.Integer">
+    delete from productorderitem
+    where productorderitem_product_id = #{productId,jdbcType=INTEGER}
+  </delete>
 </mapper>

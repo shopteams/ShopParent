@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <link rel="stylesheet" href="/res/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/res/css/bootstrap-select.min.css"/>
+    <link rel="stylesheet" href="/res/css/admin/admin_home.css"/>
+    <link rel="stylesheet" href="/res/css/admin/admin_main.css"/>
+    <link rel="stylesheet" href="/res/css/admin/admin_login.css"/>
+    <style rel="stylesheet">
+        .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+            margin: 0 130px 0 0;
+        }
+
+        .frm_input {
+            margin-right: 130px;
+        }
+
+        .frm_error_msg {
+            white-space: nowrap;
+        }
+
+        .warn_height {
+            max-height: 25px;
+        }
+
+        div.br {
+            height: 20px;
+        }
+
+        .details_property_list label {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<form method="post" th:action="@{/editProductData}">
+    <div class="details_div_first">
+        <input type="hidden" value="${requestScope.product.product_id}" id="details_product_id"/>
+        <div class="frm_div_last warn_height">
+            <label class="frm_label text_info" id="lbl_product_category_id" for="select_product_category">产品类型</label>
+            <select id="select_product_category">
+
+                <option th:each="cate:${category}" th:selected="${cate.categoryId} eq ${productimg.productCategoryId}"
+                        th:name="productCategoryId" th:value="${cate.categoryId}"
+                        th:text="${cate.categoryName}"></option>
+
+            </select>
+            <label class="frm_label text_info" id="lbl_product_isEnabled"
+                   for="radio_product_isEnabled_true">产品状态</label>
+            <input id="radio_product_isEnabled_true" th:name="tyteId" type="radio" th:value="${productimg.tyteId}"
+                   th:checked="${productimg.tyteId==1?true:false}"/>
+            <label class="frm_label text_info" id="lbl_product_isEnabled_true"
+                   for="radio_product_isEnabled_true">销售中</label>
+            <input id="radio_product_isEnabled_false" th:name="tyteId" type="radio" th:value="${productimg.tyteId}"
+                   th:checked="${productimg.tyteId==2?true:false}"/>
+            <label class="frm_label text_info" id="lbl_product_isEnabled_false"
+                   for="radio_product_isEnabled_false">停售中</label>
+            <input id="radio_product_isEnabled_special" th:name="tyteId" type="radio" th:value="${productimg.tyteId}"
+                   th:checked="${productimg.tyteId==3?true:false}"/>
+            <label class="frm_label text_info" id="lbl_product_isEnabled_special" for="radio_product_isEnabled_special">促销中</label>
+            <span class="frm_error_msg" id="text_productState_details_msg"></span>
+        </div>
+    </div>
+    <div class="details_div">
+        <span class="details_title text_info">基本信息</span>
+        <div class="frm_div">
+            <label class="frm_label text_info" id="lbl_product_id">产品编号</label>
+            <input type="text" th:name="productId" th:value="${productimg.productId}" readonly="readonly"/>
+            <label class="frm_label text_info" id="lbl_product_create_date">上架日期</label>
+            <input type="text" th:value="${productimg.productCreateNewDate}" readonly="readonly"/>
+        </div>
+        <div class="frm_div">
+            <label class="frm_label text_info" id="lbl_product_name" for="input_product_name">产品名称</label>
+            <input class="frm_input" id="input_product_name" type="text" th:name="productName" maxlength="50"
+                   th:value="${productimg.productName}"/>
+            <label class="frm_label text_info" id="lbl_product_title" for="input_product_title">产品标题</label>
+            <input class="frm_input" id="input_product_title" type="text" maxlength="50" th:name="productTitle"
+                   th:value="${productimg.productTitle}"/>
+        </div>
+        <div class="frm_div_last">
+            <label class="frm_label text_info" id="lbl_product_price" for="input_product_price">产品原价</label>
+            <input class="frm_input details_unit" id="input_product_price" th:name="productPrice" type="text"
+                   maxlength="10" th:value="${productimg.productPrice}"/>
+            <span class="details_unit text_info">元</span>
+            <label class="frm_label text_info" id="lbl_product_sale_price" for="input_product_sale_price">产品促销价</label>
+            <input class="frm_input details_unit" id="input_product_sale_price" th:name="productSalePrice" type="text"
+                   maxlength="10" th:value="${productimg.productSalePrice}"/>
+            <span class="details_unit text_info">元</span>
+        </div>
+    </div>
+    <div class="details_div">
+        <span class="details_title text_info">概述图片</span>
+        <ul class="details_picList" id="product_single_list" style="list-style:none;margin:0;">
+<span th:each="img:${productimg.productimageList}">
+            <li th:if="${img.productimageType}==0" style="display:inline"><img
+                    th:src="@{/res/images/item/productSinglePicture/{imgname}(imgname=${img.productimageSrc})}"
+                    th:id="'pic_single_'+${img.productimageId}" width="128px" height="128px"
+                    th:name="${img.productimageId}"/></li>
+</span>
+            <li class="details_picList_fileUpload">
+                <svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1528"
+                     width="40" height="40">
+                    <path d="M0 512C0 229.230208 229.805588 0 512 0 794.769792 0 1024 229.805588 1024 512 1024 794.769792 794.194412 1024 512 1024 229.230208 1024 0 794.194412 0 512Z"
+                          p-id="1529" fill="#FF7874"></path>
+                    <path d="M753.301333 490.666667l-219.946667 0L533.354667 270.741333c0-11.776-9.557333-21.333333-21.354667-21.333333-11.776 0-21.333333 9.536-21.333333 21.333333L490.666667 490.666667 270.72 490.666667c-11.776 0-21.333333 9.557333-21.333333 21.333333 0 11.797333 9.557333 21.354667 21.333333 21.354667L490.666667 533.354667l0 219.904c0 11.861333 9.536 21.376 21.333333 21.376 11.797333 0 21.354667-9.578667 21.354667-21.333333l0-219.946667 219.946667 0c11.754667 0 21.333333-9.557333 21.333333-21.354667C774.634667 500.224 765.077333 490.666667 753.301333 490.666667z"
+                          p-id="1530" fill="#FFFFFF"></path>
+                </svg>
+                <span>点击上传</span>
+                <input type="file" onchange="uploadImage(this)" accept="image/*"/>
+            </li>
+        </ul>
+    </div>
+    <div class="details_div">
+        <span class="details_title text_info">详情图片</span>
+        <ul class="details_picList" id="product_details_list" style="list-style:none;margin:0;">
+<span th:each="img:${productimg.productimageList}">
+            <li th:if="${img.productimageType}==1" style="display:inline"><img
+                    th:src="@{/res/images/item/productDetailsPicture/{imgname}(imgname=${img.productimageSrc})}"
+                    th:id="'pic_single_'+${img.productimageId}" width="128px" height="128px"
+                    th:name="${img.productimageId}"/></li>
+</span>
+            <li class="details_picList_fileUpload">
+                <svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1528"
+                     width="40" height="40">
+                    <path d="M0 512C0 229.230208 229.805588 0 512 0 794.769792 0 1024 229.805588 1024 512 1024 794.769792 794.194412 1024 512 1024 229.230208 1024 0 794.194412 0 512Z"
+                          p-id="1529" fill="#FF7874"></path>
+                    <path d="M753.301333 490.666667l-219.946667 0L533.354667 270.741333c0-11.776-9.557333-21.333333-21.354667-21.333333-11.776 0-21.333333 9.536-21.333333 21.333333L490.666667 490.666667 270.72 490.666667c-11.776 0-21.333333 9.557333-21.333333 21.333333 0 11.797333 9.557333 21.354667 21.333333 21.354667L490.666667 533.354667l0 219.904c0 11.861333 9.536 21.376 21.333333 21.376 11.797333 0 21.354667-9.578667 21.354667-21.333333l0-219.946667 219.946667 0c11.754667 0 21.333333-9.557333 21.333333-21.354667C774.634667 500.224 765.077333 490.666667 753.301333 490.666667z"
+                          p-id="1530" fill="#FFFFFF"></path>
+                </svg>
+                <span>点击上传</span>
+                <input type="file" onchange="uploadImage(this)" accept="image/*" class="product_details_image_list"/>
+            </li>
+        </ul>
+    </div>
+    <div class="details_div details_div_last details_property_list">
+        <span class="details_title text_info">属性值信息</span>
+
+        <span th:each="value:${productandpropertyvalue}">
+<input type="hidden" th:name="propertyvalueId" th:value="${value.propertyvalueId}"/>
+    <label class="frm_label lbl_property_name text_info"
+           th:text="${value.propertyName}"></label>
+    <input class="frm_input" type="text"
+           maxlength="50" th:name="propertyvalueValue" th:value="${value.propertyvalueValue}"/>
+    <span th:if="(${valueStat.index}+2)% 2 != 0"> <div class="br"></div></span>
+</span>
+    </div>
+    <div class="details_tools_div">
+        <input class="frm_btn" id="btn_product_save" type="submit" value="保存"/>
+        <input class="frm_btn frm_clear" id="btn_product_cancel" type="button" value="取消"
+               onclick="window.top.location.href='index.html'"/>
+    </div>
+</form>
+<!-- 模态框 -->
+<div class="modal fade" id="modalDiv" tabindex="-1" role="dialog" aria-labelledby="modalDiv" aria-hidden="true"
+     data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">提示</h4>
+            </div>
+            <div class="modal-body">您确定要删除该产品图片吗？</div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" id="btn-ok">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="btn-close">关闭</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal -->
+</div>
+<div class="loader"></div>
+
+<script src="/res/js/jquery-1.11.3.min.js"></script>
+<script src="/res/js/bootstrap.min.js"></script>
+<script src="/res/js/bootstrap-select.min.js"></script>
+<script src="/res/js/defaults-zh_CN.min.js"></script>
+<script src="/res/js/echarts.js"></script>
+<script src="/res/js/base.js"></script>
+
+
+</body>
+</html>

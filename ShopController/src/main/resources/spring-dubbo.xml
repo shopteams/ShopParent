@@ -4,7 +4,9 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
     <dubbo:application name="Day88SSMController"/>
     <!-- 完成dubbo的注册 -->
+<!--    <dubbo:registry address="zookeeper://192.168.43.214:2181"/>-->
     <dubbo:registry address="zookeeper://10.12.153.68:2181"/>
     <!--获取提供方提供的接口数据  -->
-<!--<dubbo:reference interface="com.qphone.service.CartService" id="cartService"/>-->
+<dubbo:reference interface="com.qphone.service.ProductService" id="productService"/>
+<dubbo:reference interface="com.qphone.service.CategoryService" id="categoryService"/>
 </beans>

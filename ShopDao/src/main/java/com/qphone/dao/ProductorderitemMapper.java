@@ -14,4 +14,6 @@ public interface ProductorderitemMapper {
     int updateByPrimaryKeySelective(Productorderitem record);
 
     int updateByPrimaryKey(Productorderitem record);
+
+    int deleteByProductId(int productId);
 }

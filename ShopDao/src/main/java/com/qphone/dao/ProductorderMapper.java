@@ -14,4 +14,6 @@ public interface ProductorderMapper {
     int updateByPrimaryKeySelective(Productorder record);
 
     int updateByPrimaryKey(Productorder record);
+
+    int showHomepageOrder();
 }

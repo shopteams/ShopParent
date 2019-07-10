@@ -28,24 +28,24 @@
   <insert id="insertSelective" parameterType="com.qphone.pojo.Category">
     insert into category
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="categoryId != null">
+      <if test="categoryId != null and categoryId !=''">
         category_id,
       </if>
-      <if test="categoryName != null">
+      <if test="categoryName != null and categoryName !=''">
         category_name,
       </if>
-      <if test="categoryImageSrc != null">
+      <if test="categoryImageSrc != null and categoryImageSrc !=''">
         category_image_src,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="categoryId != null">
+      <if test="categoryId != null and categoryId !=''">
         #{categoryId,jdbcType=INTEGER},
       </if>
-      <if test="categoryName != null">
+      <if test="categoryName != null and categoryName !=''">
         #{categoryName,jdbcType=VARCHAR},
       </if>
-      <if test="categoryImageSrc != null">
+      <if test="categoryImageSrc != null and categoryImageSrc !=''">
         #{categoryImageSrc,jdbcType=VARCHAR},
       </if>
     </trim>
@@ -53,10 +53,10 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.qphone.pojo.Category">
     update category
     <set>
-      <if test="categoryName != null">
+      <if test="categoryName != null and categoryName!=''">
         category_name = #{categoryName,jdbcType=VARCHAR},
       </if>
-      <if test="categoryImageSrc != null">
+      <if test="categoryImageSrc != null and categoryImageSrc!=''">
         category_image_src = #{categoryImageSrc,jdbcType=VARCHAR},
       </if>
     </set>
@@ -68,4 +68,22 @@
       category_image_src = #{categoryImageSrc,jdbcType=VARCHAR}
     where category_id = #{categoryId,jdbcType=INTEGER}
   </update>
+
+
+
+  <select id="getAllCateGory" resultMap="BaseResultMap">
+    select * from category
+  </select>
+  <select id="getCategoryCount" resultType="int">
+    select count(0) from category
+  </select>
+  <select id="getCateGoryLike" resultMap="BaseResultMap" parameterType="String">
+   SELECT * FROM category WHERE category_name LIKE "%"#{name}"%"
+  </select>
+  <select id="getCategoryCountLike" resultType="int" parameterType="String">
+    SELECT count(0) FROM category WHERE category_name LIKE "%"#{name}"%"
+  </select>
+  <select id="getNewCategoryId" parameterType="String" resultType="int">
+    SELECT category_id FROM category WHERE category_name=#{name} ORDER BY category_id DESC
+  </select>
 </mapper>

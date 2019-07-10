@@ -1,6 +1,7 @@
 package com.qphone.dao;
 
 
+import com.qphone.pojo.Admin;
 
 public interface AdminMapper {
     int deleteByPrimaryKey(Integer adminId);

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <link rel="stylesheet" href="res/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="res/css/bootstrap-select.min.css"/>
+    <link rel="stylesheet" href="res/css/admin/admin_home.css"/>
+    <link rel="stylesheet" href="res/css/admin/admin_main.css"/>
+    <link rel="stylesheet" href="res/css/admin/admin_login.css"/>
+	
+	
+	    <style rel="stylesheet">
+        #chartByDate {
+            padding: 0;
+            margin-bottom: 40px;
+        }
+
+        #chartByDate > li {
+            display: inline-block;
+            list-style: none;
+        }
+
+        #chartByDate > li > .frm_input {
+            color: #999;
+            height: 29px;
+            cursor: pointer;
+        }
+
+        #chartTotal {
+            width: 100%;
+            margin-bottom: 30px;
+            padding: 0 20px;
+        }
+
+        #chartTotal > li {
+            width: 35%;
+            display: inline-block;
+            list-style: none;
+            padding: 0 40px;
+            cursor: pointer;
+        }
+
+        #chartTotal > li + li {
+            border-left: 2px solid #eee;
+        }
+
+        #chartTotal > li:first-child {
+            width: 31.5%;
+            padding-left: 0;
+        }
+
+        #chartTotal > li:last-child {
+            width: 31.5%;
+            padding-right: 0;
+        }
+
+        #chartTotal .chartTotalTitle {
+            height: 20px;
+            text-indent: 3px;
+        }
+
+        .chartTotalTitle .chartTitleText {
+            float: left;
+            font-weight: bold;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .chartTotalTitle .chartTitleUnit {
+            float: right;
+            font-weight: bold;
+            font-size: 14px;
+            color: #666;
+        }
+
+        #chartTotal .chartTotalValue {
+            font-size: 28px;
+            font-weight: bold;
+            color: #666;
+        }
+
+        #chartTotal .chartTotalStyle {
+            width: 100%;
+            height: 6px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .chartDateBtn {
+            display: inline-block;
+            padding: 5px 10px;
+            color: #999;
+            margin: 0 20px 0 0;
+            border-radius: 3px;
+            border: 1px solid #e9ebef;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        span.chartDateBtn.select {
+            background: #70BBF4;
+            border: 1px solid #70BBF4;
+            color: white;
+        }
+
+        .chartDateInput {
+            color: #999;
+            outline: none;
+            border: 0;
+        }
+
+        input[type=date]::-webkit-inner-spin-button {
+            display: none
+        }
+
+        input[type=date]::-webkit-clear-button {
+            display: none
+        }
+
+        #btn_chart_search {
+            position: relative;
+            top: 1px;
+        }
+
+        .split {
+            color: #999;
+            padding-right: 10px;
+        }
+
+        #chartDiv {
+            border: 1px solid #eee;
+            padding: 20px;
+        }
+
+    </style>
+</head>
+<body>
+<div >当前时间为：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="cg"></span></div>
+
+<br/>
+<ul id="chartTotal">
+    <li id="productTotal">
+        <p class="chartTotalTitle"><span class="chartTitleText">上架产品数量</span><span class="chartTitleUnit">(单位：件)</span>
+        </p>
+        <span class="chartTotalValue"  th:text="${map['productNum']}">84</span>
+        <div class="chartTotalStyle" style="background-color: #f89e9e"></div>
+    </li>
+    <li id="userTotal">
+        <p class="chartTotalTitle"><span class="chartTitleText">注册用户数量</span><span class="chartTitleUnit">(单位：人)</span>
+        </p>
+        <span class="chartTotalValue"  th:text="${map['userNum']}">18</span>
+        <div class="chartTotalStyle" style="background-color: #9ea7f5"></div>
+    </li>
+    <li id="orderTotal">
+        <p class="chartTotalTitle"><span class="chartTitleText">成交订单数量</span><span class="chartTitleUnit">(单位：件)</span>
+        </p>
+        <span class="chartTotalValue" th:text="${map['orderNum']}">143</span>
+        <div class="chartTotalStyle" style="background-color: #ffdea4"></div>
+    </li>
+</ul>
+<div id="chartDiv" style="width: 100%;height: 500px"></div>
+<div class="loader"></div>
+<script>
+    setInterval("cg.innerHTML=new Date().toLocaleString()",1000);
+</script>
+</body>
+</html>

@@ -14,6 +14,11 @@
         <property name="templateMode" value="HTML5"></property>
         <property name="characterEncoding" value="utf-8"></property>
     </bean>
+
+    <bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+        <property name="defaultEncoding" value="utf-8"></property>
+    </bean>
+
     <!-- 模板引擎 -->
     <bean id="ste" class="org.thymeleaf.spring4.SpringTemplateEngine">
         <property name="templateResolver" ref="sctr"></property>

@@ -3,7 +3,7 @@
 <mapper namespace="com.qphone.dao.ProductimageMapper">
   <resultMap id="BaseResultMap" type="com.qphone.pojo.Productimage">
     <id column="productimage_id" jdbcType="INTEGER" property="productimageId" />
-    <result column="productimage_type" jdbcType="BIT" property="productimageType" />
+    <result column="productimage_type" jdbcType="INTEGER" property="productimageType" />
     <result column="productimage_src" jdbcType="VARCHAR" property="productimageSrc" />
     <result column="productimage_product_id" jdbcType="INTEGER" property="productimageProductId" />
   </resultMap>
@@ -23,7 +23,7 @@
   <insert id="insert" parameterType="com.qphone.pojo.Productimage">
     insert into productimage (productimage_id, productimage_type, productimage_src, 
       productimage_product_id)
-    values (#{productimageId,jdbcType=INTEGER}, #{productimageType,jdbcType=BIT}, #{productimageSrc,jdbcType=VARCHAR}, 
+    values (#{productimageId,jdbcType=INTEGER}, #{productimageType,jdbcType=INTEGER}, #{productimageSrc,jdbcType=VARCHAR},
       #{productimageProductId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.qphone.pojo.Productimage">
@@ -47,7 +47,7 @@
         #{productimageId,jdbcType=INTEGER},
       </if>
       <if test="productimageType != null">
-        #{productimageType,jdbcType=BIT},
+        #{productimageType,jdbcType=INTEGER},
       </if>
       <if test="productimageSrc != null">
         #{productimageSrc,jdbcType=VARCHAR},
@@ -61,7 +61,7 @@
     update productimage
     <set>
       <if test="productimageType != null">
-        productimage_type = #{productimageType,jdbcType=BIT},
+        productimage_type = #{productimageType,jdbcType=INTEGER},
       </if>
       <if test="productimageSrc != null">
         productimage_src = #{productimageSrc,jdbcType=VARCHAR},
@@ -74,9 +74,18 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.qphone.pojo.Productimage">
     update productimage
-    set productimage_type = #{productimageType,jdbcType=BIT},
+    set productimage_type = #{productimageType,jdbcType=INTEGER},
       productimage_src = #{productimageSrc,jdbcType=VARCHAR},
       productimage_product_id = #{productimageProductId,jdbcType=INTEGER}
     where productimage_id = #{productimageId,jdbcType=INTEGER}
   </update>
+
+
+
+
+
+  <delete id="deleteByProductId" parameterType="java.lang.Integer">
+    delete from productimage
+    where productimage_product_id = #{productId,jdbcType=INTEGER}
+  </delete>
 </mapper>

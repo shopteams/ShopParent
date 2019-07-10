@@ -10,8 +10,10 @@
     <!--配置dubbo协议，dubbo，RMI,hession  -->
     <dubbo:protocol name="dubbo" port="20881"/>
     <!-- 完成dubbo的注册 -->
+<!--    <dubbo:registry address="zookeeper://192.168.43.214:2181"/>-->
     <dubbo:registry address="zookeeper://10.12.153.68:2181"/>
     <!--将接口暴露给消费方  -->
-    <!--<dubbo:service interface="com.qphone.service.CartService" ref="cartService"/>-->
+    <dubbo:service interface="com.qphone.service.ProductService" ref="productService"/>
+    <dubbo:service interface="com.qphone.service.CategoryService" ref="categoryService"/>
 
 </beans>

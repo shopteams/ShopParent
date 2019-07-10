@@ -118,4 +118,11 @@
       review_orderItem_id = #{reviewOrderitemId,jdbcType=INTEGER}
     where review_id = #{reviewId,jdbcType=INTEGER}
   </update>
+
+
+
+  <delete id="deleteByProductId" parameterType="java.lang.Integer">
+    delete from review
+    where review_product_id = #{productId,jdbcType=INTEGER}
+  </delete>
 </mapper>

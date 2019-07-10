@@ -177,4 +177,12 @@
       productorder_user_id = #{productorderUserId,jdbcType=INTEGER}
     where productorder_id = #{productorderId,jdbcType=INTEGER}
   </update>
+
+
+
+
+
+  <select id="showHomepageOrder" resultType="int">
+    select count(0) from productorder
+  </select>
 </mapper>

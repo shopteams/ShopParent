@@ -7,6 +7,17 @@
     <result column="propertyvalue_property_id" jdbcType="INTEGER" property="propertyvaluePropertyId" />
     <result column="propertyvalue_product_id" jdbcType="INTEGER" property="propertyvalueProductId" />
   </resultMap>
+
+  <resultMap id="ProductAndPropertyValue" type="com.qphone.vo.ProductAndPropertyValue">
+    <id column="propertyvalue_id" jdbcType="INTEGER" property="propertyvalueId" />
+    <result column="propertyvalue_value" jdbcType="VARCHAR" property="propertyvalueValue" />
+    <result column="propertyvalue_property_id" jdbcType="INTEGER" property="propertyvaluePropertyId" />
+    <result column="propertyvalue_product_id" jdbcType="INTEGER" property="propertyvalueProductId" />
+    <result column="property_id" jdbcType="INTEGER" property="propertyId" />
+    <result column="property_name" jdbcType="VARCHAR" property="propertyName" />
+    <result column="property_category_id" jdbcType="INTEGER" property="propertyCategoryId" />
+
+  </resultMap>
   <sql id="Base_Column_List">
     propertyvalue_id, propertyvalue_value, propertyvalue_property_id, propertyvalue_product_id
   </sql>
@@ -62,13 +73,13 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.qphone.pojo.Propertyvalue">
     update propertyvalue
     <set>
-      <if test="propertyvalueValue != null">
+      <if test="propertyvalueValue != null and propertyvalueValue!=''">
         propertyvalue_value = #{propertyvalueValue,jdbcType=VARCHAR},
       </if>
-      <if test="propertyvaluePropertyId != null">
+      <if test="propertyvaluePropertyId != null and propertyvaluePropertyId!=''">
         propertyvalue_property_id = #{propertyvaluePropertyId,jdbcType=INTEGER},
       </if>
-      <if test="propertyvalueProductId != null">
+      <if test="propertyvalueProductId != null and propertyvalueProductId!=''">
         propertyvalue_product_id = #{propertyvalueProductId,jdbcType=INTEGER},
       </if>
     </set>
@@ -81,4 +92,21 @@
       propertyvalue_product_id = #{propertyvalueProductId,jdbcType=INTEGER}
     where propertyvalue_id = #{propertyvalueId,jdbcType=INTEGER}
   </update>
+
+
+
+  <delete id="deleteByProductId" parameterType="java.lang.Integer">
+    delete from propertyvalue
+    where propertyvalue_product_id = #{productId,jdbcType=INTEGER}
+  </delete>
+
+
+
+  <select id="getAllPropertyValue" parameterType="int" resultMap="ProductAndPropertyValue">
+    SELECT p.property_id, p.property_name, p.property_category_id,
+v.propertyvalue_id, v.propertyvalue_value, v.propertyvalue_property_id,
+v.propertyvalue_product_id FROM category c,property p,propertyvalue v,product d WHERE
+c.category_id=p.property_category_id AND p.property_id=v.propertyvalue_property_id AND
+v.propertyvalue_product_id=d.product_id AND d.product_id=#{productId} ORDER BY p.property_id
+  </select>
 </mapper>

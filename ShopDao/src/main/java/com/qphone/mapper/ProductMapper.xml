@@ -2,14 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qphone.dao.ProductMapper">
   <resultMap id="BaseResultMap" type="com.qphone.pojo.Product">
-    <id column="product_id" jdbcType="INTEGER" property="productId" />
-    <result column="product_name" jdbcType="VARCHAR" property="productName" />
-    <result column="product_title" jdbcType="VARCHAR" property="productTitle" />
-    <result column="product_price" jdbcType="DECIMAL" property="productPrice" />
-    <result column="product_sale_price" jdbcType="DECIMAL" property="productSalePrice" />
-    <result column="product_create_date" jdbcType="TIMESTAMP" property="productCreateDate" />
-    <result column="product_category_id" jdbcType="INTEGER" property="productCategoryId" />
-    <result column="product_isEnabled" jdbcType="BIT" property="productIsenabled" />
+    <id column="product_id" jdbcType="INTEGER" property="productId"/>
+    <result column="product_name" jdbcType="VARCHAR" property="productName"/>
+    <result column="product_title" jdbcType="VARCHAR" property="productTitle"/>
+    <result column="product_price" jdbcType="DECIMAL" property="productPrice"/>
+    <result column="product_sale_price" jdbcType="DECIMAL" property="productSalePrice"/>
+    <result column="product_create_date" jdbcType="TIMESTAMP" property="productCreateDate"/>
+    <result column="product_category_id" jdbcType="INTEGER" property="productCategoryId"/>
+    <result column="product_isEnabled" jdbcType="BIT" property="productIsenabled"/>
+    <result column="type_id" jdbcType="INTEGER" property="tyteId"/>
+    <result column="type_name" jdbcType="VARCHAR" property="typeName" />
+    <collection property="productimageList" ofType="com.qphone.pojo.Productimage">
+      <id column="productimage_id" jdbcType="INTEGER" property="productimageId" />
+      <result column="productimage_type" jdbcType="INTEGER" property="productimageType" />
+      <result column="productimage_src" jdbcType="VARCHAR" property="productimageSrc" />
+      <result column="productimage_product_id" jdbcType="INTEGER" property="productimageProductId" />
+    </collection>
   </resultMap>
   <sql id="Base_Column_List">
     product_id, product_name, product_title, product_price, product_sale_price, product_create_date, 
@@ -36,81 +44,90 @@
   <insert id="insertSelective" parameterType="com.qphone.pojo.Product">
     insert into product
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="productId != null">
+      <if test="productId != null and productId !=''">
         product_id,
       </if>
-      <if test="productName != null">
+      <if test="productName != null and productName !=''">
         product_name,
       </if>
-      <if test="productTitle != null">
+      <if test="productTitle != null and productTitle !=''">
         product_title,
       </if>
-      <if test="productPrice != null">
+      <if test="productPrice != null and productPrice !=''">
         product_price,
       </if>
-      <if test="productSalePrice != null">
+      <if test="productSalePrice != null and productSalePrice !=''">
         product_sale_price,
       </if>
-      <if test="productCreateDate != null">
+      <if test="productCreateDate != null and productCreateDate !=''">
         product_create_date,
       </if>
-      <if test="productCategoryId != null">
+      <if test="productCategoryId != null and productCategoryId !=''">
         product_category_id,
       </if>
-      <if test="productIsenabled != null">
+      <if test="productIsenabled != null and productIsenabled !=''">
         product_isEnabled,
+      </if>
+      <if test="tyteId != null and tyteId !=''">
+        tyte_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="productId != null">
+      <if test="productId != null and productId !=''">
         #{productId,jdbcType=INTEGER},
       </if>
-      <if test="productName != null">
+      <if test="productName != null and productName !=''">
         #{productName,jdbcType=VARCHAR},
       </if>
-      <if test="productTitle != null">
+      <if test="productTitle != null and productTitle !=''">
         #{productTitle,jdbcType=VARCHAR},
       </if>
-      <if test="productPrice != null">
+      <if test="productPrice != null and productPrice !=''">
         #{productPrice,jdbcType=DECIMAL},
       </if>
-      <if test="productSalePrice != null">
+      <if test="productSalePrice != null and productSalePrice !=''">
         #{productSalePrice,jdbcType=DECIMAL},
       </if>
-      <if test="productCreateDate != null">
+      <if test="productCreateDate != null and productCreateDate !=''">
         #{productCreateDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="productCategoryId != null">
+      <if test="productCategoryId != null and productCategoryId !=''">
         #{productCategoryId,jdbcType=INTEGER},
       </if>
-      <if test="productIsenabled != null">
+      <if test="productIsenabled != null and productIsenabled !=''">
         #{productIsenabled,jdbcType=BIT},
+      </if>
+      <if test="tyteId != null and tyteId !=''">
+        #{tyteId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.qphone.pojo.Product">
     update product
     <set>
-      <if test="productName != null">
+      <if test="productName != null and productName !=''">
         product_name = #{productName,jdbcType=VARCHAR},
       </if>
-      <if test="productTitle != null">
+      <if test="productTitle != null and productTitle !=''">
         product_title = #{productTitle,jdbcType=VARCHAR},
       </if>
-      <if test="productPrice != null">
+      <if test="productPrice != null and productPrice !=''">
         product_price = #{productPrice,jdbcType=DECIMAL},
       </if>
-      <if test="productSalePrice != null">
+      <if test="productSalePrice != null and productSalePrice !=''">
         product_sale_price = #{productSalePrice,jdbcType=DECIMAL},
       </if>
-      <if test="productCreateDate != null">
+      <if test="productCreateDate != null and productCreateDate !=''">
         product_create_date = #{productCreateDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="productCategoryId != null">
+      <if test="productCategoryId != null and productCategoryId !=''">
         product_category_id = #{productCategoryId,jdbcType=INTEGER},
       </if>
-      <if test="productIsenabled != null">
+      <if test="productIsenabled != null and productIsenabled !=''">
         product_isEnabled = #{productIsenabled,jdbcType=BIT},
+      </if>
+      <if test="tyteId != null and tyteId !=''">
+        type_id = #{tyteId,jdbcType=INTEGER},
       </if>
     </set>
     where product_id = #{productId,jdbcType=INTEGER}
@@ -126,4 +143,29 @@
       product_isEnabled = #{productIsenabled,jdbcType=BIT}
     where product_id = #{productId,jdbcType=INTEGER}
   </update>
+
+
+
+
+  <select id="getAllProduct" resultMap="BaseResultMap" parameterType="map">
+SELECT p.product_id, p.product_name, p.product_title, p.product_price, p.product_sale_price, p.product_create_date,
+ p.product_category_id, p.product_isEnabled,t.type_name
+FROM product p,Producttype t WHERE p.type_id=t.type_id  LIMIT #{page},#{pagesize}
+  </select>
+
+  <select id="getProductCount" resultType="int">
+        select count(0) from product
+    </select>
+
+
+  <select id="selectAllProductAndOther" resultMap="BaseResultMap" parameterType="int">
+    SELECT * FROM product p,productimage i,producttype t
+WHERE p.type_id=t.type_id AND p.product_id=i.productimage_product_id AND p.product_id=#{productId,jdbcType=INTEGER}
+  </select>
+  <select id="showHomepageProduct" resultType="int">
+    select count(0) from product where type_id=1 or type_id=3
+  </select>
+
+
+
 </mapper>

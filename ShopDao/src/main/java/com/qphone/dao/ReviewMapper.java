@@ -16,4 +16,6 @@ public interface ReviewMapper {
     int updateByPrimaryKeyWithBLOBs(Review record);
 
     int updateByPrimaryKey(Review record);
+
+    int deleteByProductId(int productId);
 }

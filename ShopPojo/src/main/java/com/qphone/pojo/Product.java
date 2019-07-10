@@ -1,10 +1,13 @@
 package com.qphone.pojo;
 
+import com.qphone.pojoutils.DateTools;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
-public class Product implements Serializable{
+public class Product implements Serializable {
     private Integer productId;
 
     private String productName;
@@ -16,10 +19,43 @@ public class Product implements Serializable{
     private BigDecimal productSalePrice;
 
     private Date productCreateDate;
+    //新加入的属性，不在dao层的mapper注入，只是作为时间格式化使用，返回string
+    private String productCreateNewDate;
 
     private Integer productCategoryId;
 
     private Boolean productIsenabled;
+
+    private Integer tyteId;
+    //两表关联查询，查询上架的状态
+    private String typeName;
+
+    private List<Productimage> productimageList;
+
+    public List<Productimage> getProductimageList() {
+        return productimageList;
+    }
+
+    public void setProductimageList(List<Productimage> productimageList) {
+        this.productimageList = productimageList;
+    }
+
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
+    }
+
+    public Integer getTyteId() {
+        return tyteId;
+    }
+
+    public void setTyteId(Integer tyteId) {
+        this.tyteId = tyteId;
+    }
+
 
     public Integer getProductId() {
         return productId;
@@ -67,6 +103,7 @@ public class Product implements Serializable{
 
     public void setProductCreateDate(Date productCreateDate) {
         this.productCreateDate = productCreateDate;
+        this.productCreateNewDate= DateTools.dateFormat(productCreateDate);
     }
 
     public Integer getProductCategoryId() {
@@ -85,6 +122,10 @@ public class Product implements Serializable{
         this.productIsenabled = productIsenabled;
     }
 
+    public String getProductCreateNewDate() {
+        return productCreateNewDate;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -94,8 +135,12 @@ public class Product implements Serializable{
                 ", productPrice=" + productPrice +
                 ", productSalePrice=" + productSalePrice +
                 ", productCreateDate=" + productCreateDate +
+                ", productCreateNewDate='" + productCreateNewDate + '\'' +
                 ", productCategoryId=" + productCategoryId +
                 ", productIsenabled=" + productIsenabled +
+                ", tyteId=" + tyteId +
+                ", typeName='" + typeName + '\'' +
+                ", productimageList=" + productimageList +
                 '}';
     }
 }
