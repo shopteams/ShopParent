@@ -3,6 +3,7 @@ package com.qphone.vo;
 import java.io.Serializable;
 
 public class ProductAndPropertyValue implements Serializable {
+    private Integer ss=1;
     private Integer propertyId;
 
     private String propertyName;
